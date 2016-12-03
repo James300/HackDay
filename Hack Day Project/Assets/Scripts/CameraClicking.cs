@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CameraClicking : MonoBehaviour {
-
+public class CameraClicking : MonoBehaviour
+{
 	// Use this for initialization
 	void Start () {
 		
@@ -16,9 +17,21 @@ public class CameraClicking : MonoBehaviour {
 
     void FixedUpdate()
     {
-        Vector3 fwd = transform.forward;
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 fwd = transform.forward;
 
-        if (Physics.Raycast(transform.position, fwd, 10))
-            Debug.Log("SOMETHING IN FRONT");
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, fwd, out hit))
+            {
+                if (hit.collider != null)
+                {
+                    Button button = hit.collider.GetComponentInParent<Button>();
+                    if (button != null)
+                        button.onClick.Invoke();
+                }
+
+            }
+        }
     }
 }
