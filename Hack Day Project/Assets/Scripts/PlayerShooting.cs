@@ -17,7 +17,9 @@ public class PlayerShooting : MonoBehaviour
 	{
 	    if (Input.GetMouseButtonDown(0))
 	    {
-	        var bullet = Instantiate(Bullet,transform.position,transform.rotation);
+	        var bulletPosition = transform.position;
+	        bulletPosition.y -= 1;
+	        var bullet = Instantiate(Bullet,bulletPosition,transform.rotation);
             
 	    }
 	}
