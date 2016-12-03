@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject[] Asteroids;
+
+    public float AsteroidColddown;
+
     public float MinDistance;
     public float MaxDistance;
 
@@ -24,7 +27,7 @@ public class GameController : MonoBehaviour
         {
             SpawnAsteroid();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(AsteroidColddown);
         }
     }
 
@@ -32,9 +35,9 @@ public class GameController : MonoBehaviour
     {
         int asteroidIndex = (int) (Random.value * Asteroids.Length);
 
-        float x = Camera.main.transform.position.x + MinDistance + Random.value * MaxDistance;
-        float y = Camera.main.transform.position.y + MinDistance + Random.value * MaxDistance;
-        float z = Camera.main.transform.position.z + MinDistance + Random.value * MaxDistance;
+        float x = Camera.main.transform.position.x + (MinDistance + Random.Range(-1,1) * MaxDistance);
+        float y = Camera.main.transform.position.y + (MinDistance + Random.Range(-1,1) * MaxDistance);
+        float z = Camera.main.transform.position.z + (MinDistance + Random.Range(-1,1) * MaxDistance);
         Vector3 position = new Vector3(x,y,z);
 
         Instantiate(Asteroids[asteroidIndex], position, Quaternion.identity);
