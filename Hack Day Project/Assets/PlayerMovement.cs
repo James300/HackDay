@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 	
     void FixedUpdate()
     {
-        Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z);
+        Vector3 forward = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
         transform.position += Movement * forward * Time.deltaTime;
     }
 
