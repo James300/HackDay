@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
-
+public class PlayerMovement : MonoBehaviour
+{
+    public static float SpeedScalar = 10*Time.deltaTime;
 	// Use this for initialization
 	void Start () {
 		
@@ -11,7 +12,6 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 position = new Vector3(transform.position.x+1,transform.position.y,transform.position.z);
-	    transform.position = position;
+	    transform.Translate(transform.forward.x*SpeedScalar,transform.forward.y*SpeedScalar,transform.forward.z*SpeedScalar);
 	}
 }
