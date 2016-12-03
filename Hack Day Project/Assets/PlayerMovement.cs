@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static float SpeedScalar = 10*Time.deltaTime;
+    public float Movement = 10;
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
+    void FixedUpdate()
+    {
+        Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z);
+        transform.position += Movement * forward * Time.deltaTime;
+    }
+
 	// Update is called once per frame
-	void Update () {
-	    transform.Translate(transform.forward.x*SpeedScalar,transform.forward.y*SpeedScalar,transform.forward.z*SpeedScalar);
+	void Update ()
+    {
+
 	}
 }
