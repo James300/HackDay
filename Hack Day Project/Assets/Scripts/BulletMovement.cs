@@ -17,12 +17,12 @@ public class BulletMovement : MonoBehaviour
 	void Start ()
     {
         audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(fire);
         _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>(); 
 	}
 
     void FixedUpdate()
     {
-        audio.PlayOneShot(fire);
         Vector3 forward = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
         transform.position += Movement * forward * Time.deltaTime;
     }
@@ -33,10 +33,12 @@ public class BulletMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Instantiate(Explosion, other.transform.position, Quaternion.identity);
+        //var explosion = Instantiate(Explosion, other.transform.position, Quaternion.identity);
         audio.PlayOneShot(bangSmall);
         Destroy(other.gameObject);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
+
+        //Destroy(explosion, 0.5f);
 
         _gameController.IncrementScore(10);
     }
