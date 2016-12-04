@@ -46,7 +46,8 @@ public class GameController : MonoBehaviour
             {
                 if(Input.GetMouseButtonDown(0))
                 {
-                    SceneManager.LoadScene(1);
+                    Time.timeScale = 1;
+                    SceneManager.LoadScene(0);
                 }
             }
         }
