@@ -7,15 +7,19 @@ public class BulletMovement : MonoBehaviour
     public float Movement = 10;
 
     private GameController _gameController;
+    public AudioClip fire;
+    AudioSource audio;
 
 	// Use this for initialization
 	void Start ()
     {
+        audio = GetComponent<AudioSource>();
         _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>(); 
 	}
 
     void FixedUpdate()
     {
+        audio.PlayOneShot(fire);
         Vector3 forward = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
         transform.position += Movement * forward * Time.deltaTime;
     }
