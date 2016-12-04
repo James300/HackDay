@@ -8,6 +8,7 @@ public class BulletMovement : MonoBehaviour
 
     private GameController _gameController;
     public AudioClip fire;
+    public AudioClip bangSmall;
     AudioSource audio;
 
 	// Use this for initialization
@@ -30,6 +31,7 @@ public class BulletMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        audio.PlayOneShot(bangSmall);
         Destroy(other.gameObject);
         Destroy(gameObject);
 
