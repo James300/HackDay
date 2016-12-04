@@ -1,6 +1,6 @@
 # Created by https://www.gitignore.io/api/unity
 
-*.*.meta
+#*.*.meta
 
 ### Unity ###
 [Ll]ibrary/
@@ -22,7 +22,7 @@ ExportedObj/
 *.pidb
 *.booproj
 *.svd
-*.unity
+#*.unity
 
 
 
