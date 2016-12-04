@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -12,11 +13,18 @@ public class GameController : MonoBehaviour
     public float MinDistance = 40;
     public float MaxDistance = 5;
 
+    private bool _isAlive;
+    private GameObject _gameOverPanel;
+
     private Text _scoreText;
     private int _score;
 
 	void Start ()
     {
+        _isAlive = true;
+        _gameOverPanel = GameObject.FindGameObjectWithTag("GameOver");
+        _gameOverPanel.SetActive(false);
+
         _scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
         _score = 0;
 
@@ -27,7 +35,21 @@ public class GameController : MonoBehaviour
 	
 	void Update ()
     {
-        
+        if(!_isAlive)
+        {
+            if(!_gameOverPanel.activeSelf)
+            {
+                _gameOverPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                if(Input.GetMouseButtonDown(0))
+                {
+                    SceneManager.LoadScene(1);
+                }
+            }
+        }
     }
 
     private IEnumerator SpawnAsteroidCoroutine()
@@ -61,5 +83,10 @@ public class GameController : MonoBehaviour
     public void UpdateScore()
     {
         _scoreText.text = "S C O R E: " + _score;
+    }
+
+    public void SetAlive(bool alive)
+    {
+        _isAlive = alive;
     }
 }

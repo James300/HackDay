@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float Movement = 10;
+
+    private GameController _gameController;
+
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 	}
 	
     void FixedUpdate()
@@ -26,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     
     void OnCollisionEnter(Collision other)
     {
-        SceneManager.LoadScene(1);
         Destroy(other.gameObject);
+        _gameController.SetAlive(false);
     }
 }
