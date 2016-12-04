@@ -5,9 +5,13 @@ using UnityEngine;
 public class BulletMovement : MonoBehaviour
 {
     public float Movement = 10;
+
+    private GameController _gameController;
+
 	// Use this for initialization
-	void Start () {
-		 
+	void Start ()
+    {
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>(); 
 	}
 
     void FixedUpdate()
@@ -24,5 +28,7 @@ public class BulletMovement : MonoBehaviour
     {
         Destroy(other.gameObject);
         Destroy(gameObject);
+
+        _gameController.IncrementScore(10);
     }
 }
