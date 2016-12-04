@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletMovement : MonoBehaviour
 {
+    public GameObject Explosion;
+
     public float Movement = 10;
 
     private GameController _gameController;
@@ -31,6 +33,7 @@ public class BulletMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        Instantiate(Explosion, other.transform.position, Quaternion.identity);
         audio.PlayOneShot(bangSmall);
         Destroy(other.gameObject);
         Destroy(gameObject);
